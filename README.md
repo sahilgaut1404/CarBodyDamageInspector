@@ -32,3 +32,16 @@ Download damage.pt from the CarInspector folder in My Drive and place it next to
 Upload a JPEG or PNG. Compare the outlines with the original, confirm or reject each finding, enter its body panel and download the JSON review. Panel names are entered by the reviewer. A photo with no predicted findings may still contain visible damage. The scope is dents, scratches and cracks.
 
 Model implementation reference: https://docs.pytorch.org/tutorials/intermediate/torchvision_tutorial.html
+
+## Model comparison
+
+I tested both versions on the same eight car photos. Together, the photos had 47 labelled dents, scratches and cracks.
+
+| Model | Confidence threshold | Correct outlines | False alarms | Missed defects | Precision | Recall |
+| :--- | ---: | ---: | ---: | ---: | ---: | ---: |
+| V1 | 0.10 | 0 | 43 | 47 | 0% | 0% |
+| V1 | 0.25 | 0 | 0 | 47 | No predictions | 0% |
+| V2 | 0.10 | 12 | 556 | 35 | 2.1% | 25.5% |
+| V2 | 0.25 | 5 | 24 | 42 | 17.2% | 10.6% |
+
+At 0.25, Version 2 gave me 29 outlines to review. Five matched a labelled defect. Lowering the threshold to 0.10 found seven more defects but added 532 false alarms.
