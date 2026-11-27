@@ -1,0 +1,7 @@
+torch>=2.5,<3
+torchvision>=0.20,<1
+streamlit>=1.40,<2
+opencv-python-headless>=4.10,<5
+pycocotools>=2.0.8,<3
+numpy>=1.26,<3
+Pillow>=10
